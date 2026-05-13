@@ -8,6 +8,12 @@ with helix.go.
 
 ## Example
 
+A helix REST endpoint returns a GraphQL-spec compliant envelope: a success
+response carries `data` (and optional `extensions.metadata`), while a 3xx/4xx/5xx
+response carries an `errors` array (and optional `extensions.metadata`).
+`Response<Metadata, Data>` is the discriminated union of both shapes — narrow
+on the presence of `errors` to handle each case.
+
 ```typescript
 import axios from "axios";
 
@@ -22,7 +28,15 @@ type Data = {
   // ...
 };
 
-await axios.get<Response<Metadata, Data>>("/anything");
+const { data: body } = await axios.get<Response<Metadata, Data>>("/anything");
+
+if ("errors" in body) {
+  // body.errors: ErrorEntry[]
+  // body.extensions?.metadata?.event
+} else {
+  // body.data: Data | null
+  // body.extensions?.metadata?.event
+}
 ```
 
 ## License

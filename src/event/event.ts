@@ -36,7 +36,6 @@ export type Event = {
 	id?: string;
 	name?: string;
 	meta?: Record<string, string>;
-	params?: Record<string, string[]>;
 	is_anonymous?: boolean;
 	user_id?: string;
 	organization_id?: string;
