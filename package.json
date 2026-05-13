@@ -1,7 +1,7 @@
 {
   "name": "@mountayaapp/helix",
   "version": "0.20.0",
-  "description": " TypeScript library for consuming public-facing types exposed by services powered by helix.go.",
+  "description": "TypeScript library for consuming public-facing types exposed by services powered by helix.go.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mountayaapp/helix.ts.git"
@@ -19,18 +19,16 @@
     "./dist"
   ],
   "scripts": {
-    "lint": "biome check --write",
+    "lint": "biome check",
+    "format": "biome check --write",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@biomejs/biome": "~2.2.4",
-    "typescript": "^5.9.3"
+    "@biomejs/biome": "~2.4.14",
+    "typescript": "^6.0.3"
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts"
-    },
     "./errorstack": {
       "types": "./dist/errorstack/index.d.ts"
     },
@@ -43,10 +41,5 @@
     "./integration/temporal": {
       "types": "./dist/integration/temporal/index.d.ts"
     }
-  },
-	"packageManager": "npm@10.9.2",
-	"engines": {
-		"node": "~22.16.0",
-		"npm": "~10.9.2"
-	}
+  }
 }
